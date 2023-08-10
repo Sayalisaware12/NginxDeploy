@@ -1,4 +1,4 @@
-name: Deploy Application
+name: Deploy WordPress
 
 on:
   push:
@@ -13,15 +13,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Setup Environment
+      - name: Setup SSH Key
         run: |
-          # Install necessary dependencies here
-          echo "Environment setup..."
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
 
-      - name: Deploy Application
+      - name: Install Dependencies
         run: |
-          # Add deployment steps here
-          echo "Deploying the application..."
+          # Install any dependencies here
+          echo "Installing dependencies..."
 
-      # Add additional steps as needed
+      - name: Deploy WordPress
+        run: |
+          # Deploy WordPress using your deployment script
+          # For example, use SCP to transfer files to the VPS
+          scp -r ./wordpress/* user@your_server_ip:/path/to/destination
+
+      - name: Cleanup SSH Key
+        run: |
+          rm -f ~/.ssh/id_rsa
 
