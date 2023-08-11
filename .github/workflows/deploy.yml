@@ -16,7 +16,7 @@ jobs:
       - name: Setup SSH Key
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          echo "$sayalildap.pem" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
       - name: Install Dependencies
@@ -28,7 +28,7 @@ jobs:
         run: |
           # Deploy WordPress using your deployment script
           # For example, use SCP to transfer files to the VPS
-          scp -r ./wordpress/* user@your_server_ip:/path/to/destination
+          scp -r ./wordpress/* ubuntu@ec2-35-169-124-160/path/to/destination
 
       - name: Cleanup SSH Key
         run: |
