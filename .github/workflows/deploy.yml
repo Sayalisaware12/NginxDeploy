@@ -28,7 +28,7 @@ jobs:
         run: |
           # Deploy WordPress using your deployment script
           # For example, use SCP to transfer files to the VPS
-          scp -r ./wordpress/* ubuntu@ec2-35-169-124-160:/var/www/html/
+          scp -r ./wordpress/* ubuntu@100.24.98.55:/var/www/html/
 
       - name: Cleanup SSH Key
         run: |
